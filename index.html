@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Suinrai's Presentation</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+
+		<style>
+			/* =========================================================
+           PALETA DE COLORES Y VARIABLES (¡EDITA AQUÍ TUS GUSTOS!)
+           ========================================================= */
+			:root {
+				/* Extraídos de tu imagen */
+				--md-primary: #ff5263; /* Rojo Coral */
+				--md-secondary: #ffca28; /* Amarillo Dorado */
+				--md-bg: #0e0e11; /* Fondo General Oscuro */
+				--md-surface: #18181c; /* Superficie de Tarjetas */
+				--md-surface-2: #222228; /* Elevación Secundaria */
+
+				/* Textos */
+				--md-text-primary: #f4f4f6;
+				--md-text-secondary: #a0a0ac;
+
+				/* Bordes y Sombras Material */
+				--radius-large: 24px;
+				--radius-medium: 16px;
+				--radius-small: 8px;
+				--shadow-elevation: 0px 4px 20px rgba(0, 0, 0, 0.4);
+				--transition-speed: 0.25s ease;
+			}
+
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				font-family: "Ubuntu", sans-serif;
+			}
+
+			body {
+				background-color: var(--md-bg);
+				color: var(--md-text-primary);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+				padding: 20px;
+			}
+
+			/* Contenedor Principal (Material Layout) */
+			.container {
+				width: 100%;
+				max-width: 800px;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
+
+			/* Targeta de Perfil Principal */
+			.profile-card {
+				background-color: var(--md-surface);
+				border-radius: var(--radius-large);
+				padding: 32px;
+				box-shadow: var(--shadow-elevation);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				border-top: 4px solid var(--md-primary);
+			}
+
+			.avatar-wrapper {
+				position: relative;
+				width: 140px;
+				height: 140px;
+				margin-bottom: 20px;
+			}
+
+			.avatar {
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				object-fit: cover;
+				background-color: #000;
+				border: 3px solid var(--md-primary);
+				box-shadow: 0 0 15px rgba(255, 82, 99, 0.3);
+			}
+
+			.badge-status {
+				position: absolute;
+				bottom: 4px;
+				right: 4px;
+				width: 18px;
+				height: 18px;
+				background-color: var(--md-secondary);
+				border: 3px solid var(--md-surface);
+				border-radius: 50%;
+			}
+
+			.profile-name {
+				font-size: 2rem;
+				font-weight: 700;
+				color: var(--md-text-primary);
+				margin-bottom: 6px;
+			}
+
+			.profile-title {
+				font-size: 1rem;
+				font-weight: 500;
+				color: var(--md-secondary);
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				margin-bottom: 16px;
+			}
+
+			.profile-bio {
+				color: var(--md-text-secondary);
+				font-size: 0.98rem;
+				line-height: 1.6;
+				max-width: 600px;
+				margin-bottom: 24px;
+			}
+
+			/* Botones de Acción (Material Chips / Buttons) */
+			.actions-group {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+			.btn-material {
+				background-color: var(--md-primary);
+				color: #000;
+				font-weight: 700;
+				padding: 12px 24px;
+				border-radius: 50px;
+				text-decoration: none;
+				transition:
+					transform var(--transition-speed),
+					background-color var(--transition-speed);
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			.btn-material:hover {
+				transform: translateY(-2px);
+				background-color: #ff6b79;
+			}
+
+			.btn-secondary {
+				background-color: var(--md-surface-2);
+				color: var(--md-text-primary);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.btn-secondary:hover {
+				background-color: #2c2c34;
+			}
+
+			/* Secciones Secundarias Grid */
+			.grid-sections {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 20px;
+			}
+
+			.card {
+				background-color: var(--md-surface);
+				border-radius: var(--radius-medium);
+				padding: 24px;
+				box-shadow: var(--shadow-elevation);
+			}
+
+			.card-title {
+				font-size: 1.1rem;
+				color: var(--md-primary);
+				margin-bottom: 14px;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			/* Chips / Tags Material */
+			.chips-container {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+
+			.chip {
+				background-color: var(--md-surface-2);
+				color: var(--md-text-primary);
+				padding: 6px 14px;
+				border-radius: var(--radius-small);
+				font-size: 0.85rem;
+				font-weight: 500;
+				border-left: 3px solid var(--md-secondary);
+			}
+
+			/* Lista de Proyectos / Enlaces */
+			.item-list {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.item-list li a {
+				color: var(--md-text-primary);
+				text-decoration: none;
+				display: block;
+				padding: 10px 14px;
+				background-color: var(--md-surface-2);
+				border-radius: var(--radius-small);
+				transition: background-color var(--transition-speed);
+			}
+
+			.item-list li a:hover {
+				background-color: #2d2d36;
+				color: var(--md-secondary);
+			}
+
+			footer {
+				text-align: center;
+				color: var(--md-text-secondary);
+				font-size: 0.8rem;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- TARJETA PRINCIPAL -->
+			<main class="profile-card">
+				<div class="avatar-wrapper">
+					<!-- Asegúrate de tener la imagen cargada o en la misma carpeta -->
+					<img src="1000247595.png" alt="Avatar" class="avatar" />
+					<div class="badge-status" title="Activo"></div>
+				</div>
+
+				<!-- EDITABLE: Tu Nombre y Título -->
+				<h1 class="profile-name">Shinrai Ryūzaki (Alias)</h1>
+				<p class="profile-title">Developer and creator</p>
+
+				<!-- EDITABLE: Tu Biografía -->
+				<p class="profile-bio">
+					¡Hola! Bienvenido a mi rincón web. Me dedico a crear proyectos geniales, interfaces dinámicas y arte digital. Explora mis redes o contáctame
+					si quieres colaborar.
+				</p>
+
+				<!-- EDITABLE: Botones principales -->
+				<div class="actions-group">
+					<a href="#contacto" class="btn-material">Contact</a>
+					<a href="#proyectos" class="btn-material btn-secondary">Projects</a>
+				</div>
+			</main>
+
+			<!-- SECCIONES SECUNDARIAS -->
+			<div class="grid-sections">
+				<!-- TARJETA DE HABILIDADES / INTERESES -->
+				<section class="card">
+					<h2 class="card-title">Skills and Hobbies</h2>
+					<div class="chips-container">
+						<span class="chip">HTML / CSS</span>
+						<span class="chip">JavaScript</span>
+						<span class="chip">UI/UX</span>
+						<span class="chip">Digital Art</span>
+						<span class="chip">Pixel Art</span>
+					</div>
+				</section>
+
+				<!-- TARJETA DE ENLACES / PROYECTOS -->
+				<section class="card" id="proyectos">
+					<h2 class="card-title">Quick Links</h2>
+					<ul class="item-list">
+						<li><a href="#" target="_blank">My Main Proyect</a></li>
+						<li><a href="#" target="_blank">My Gallery</a></li>
+						<li><a href="https://github.com/shinraixd" target="_blank">GitHub Profile</a></li>
+					</ul>
+				</section>
+			</div>
+
+			<footer>
+				<p>© 2026 - Shinrai Ryūzaki</p>
+			</footer>
+		</div>
+	</body>
+</html>
